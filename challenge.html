@@ -1,55 +1,71 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Verificación de seguridad / Security Check</title>
-  <style>
-    body {
-      background-color: #0d1117;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 80px;
-    }
-    img {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 26px;
-    }
-    p {
-      color: #8b949e;
-      margin: 8px 0;
-    }
-    hr {
-      border: none;
-      height: 4px;
-      width: 60%;
-      background: linear-gradient(90deg, #007bff, #00d4ff);
-      border-radius: 4px;
-      margin: 40px auto;
-    }
-    .captcha-box {
-      margin: 30px auto;
-    }
-  </style>
-</head>
-<body>
-  <img src="https://static.wixstatic.com/media/517f22_05af1687d7504505a56b48f8ed061474~mv2.jpg/v1/fill/w_434,h_70,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20isacnet.jpg" alt="Logo ISACNET">
+export default {
+  async fetch(request) {
+    const html = `
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Verificación de seguridad / Security Check</title>
+        <style>
+          body {
+            background-color: #0d1117;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 80px 20px;
+          }
+          img {
+            width: 150px;
+            margin-bottom: 20px;
+          }
+          h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+          }
+          p {
+            color: #8b949e;
+            font-size: 16px;
+            margin: 6px 0;
+          }
+          hr {
+            border: none;
+            height: 4px;
+            width: 60%;
+            background: linear-gradient(90deg, #007bff, #00d4ff);
+            border-radius: 4px;
+            margin: 40px auto;
+          }
+          .captcha-box {
+            margin: 30px 0;
+          }
+        </style>
+      </head>
+      <body>
+        <img src="https://static.wixstatic.com/media/517f22_05af1687d7504505a56b48f8ed061474~mv2.jpg/v1/fill/w_434,h_70,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo%20isacnet.jpg" alt="Logo ISACNET">
 
-  <h1>Estamos verificando tu acceso...</h1>
-  <p>Por razones de seguridad, estamos procesando tu solicitud.</p>
-  <p>Si esta página persiste, contacta a <a href="mailto:soporte@isacnet.net">soporte</a>.</p>
+        <h1>Estamos verificando tu acceso...</h1>
+        <p>Por razones de seguridad, estamos procesando tu solicitud.</p>
+        <p>Si esta página persiste, contacta a <a href="mailto:soporte@isacnet.net">soporte@isacnet.net</a>.</p>
 
-  <div class="captcha-box">
-    ::CAPTCHA_BOX::
-  </div>
+        <div class="captcha-box">
+          ::CAPTCHA_BOX::
+        </div>
 
-  <hr>
+        <hr>
 
-  <h1>We are verifying your access...</h1>
-  <p>For security reasons, your request is being processed.</p>
-  <p>If this page persists, please contact <a href="mailto:soporte@isacnet.net">support</a>.</p>
-</body>
-</html>
+        <h1>We are verifying your access...</h1>
+        <p>For security reasons, your request is being processed.</p>
+        <p>If this page persists, please contact <a href="mailto:soporte@isacnet.net">support@isacnet.net</a>.</p>
+      </body>
+      </html>
+    `;
+
+    return new Response(html, {
+      status: 403,
+      headers: {
+        'Content-Type': 'text/html'
+      }
+    });
+  }
+};
+
